@@ -3,9 +3,22 @@ const path=require("path")
 const fs=require('fs')
 const mongoose = require('mongoose');
 const bodyparser = require("body-parser")
-mongoose.connect('mongodb://localhost/contactDance', {useNewUrlParser: true, useUnifiedTopology: true});
+// mongoose.connect('mongodb://localhost/contactDance', {useNewUrlParser: true, useUnifiedTopology: true});
 const app= express()
 const port =8000;
+
+// MongoDB Connection
+mongoose.connect('mongodb+srv://Tony-Stark-Jr:Stark@cluster0.flvhw.mongodb.net/dance-website?retryWrites=true&w=majority', {
+    useNewUrlParser: true, useUnifiedTopology: true 
+})
+
+mongoose.connection.on('error', err => {
+    console.log("connection failed");
+})
+
+mongoose.connection.on("connected", connected => {
+    console.log('connected with database');
+})
 
 // Define mongoose Schema
 var contactSchema =new mongoose.Schema({
@@ -20,7 +33,7 @@ var Contact = mongoose.model('Contact', contactSchema)
 
 // Express Specific Stuff 
 app.use(express.static('static')); // For serving static files
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true })) // Use of body-parser to read and write josn data to human data
 
 // Pug Specific Stuff 
  app.set('view engine','pug') // Set the template engine as pug
