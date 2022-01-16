@@ -40,7 +40,7 @@ app.use(express.urlencoded({ extended: true })) // Use of body-parser to read an
  app.set('views',path.join(__dirname, 'views')); // Set teh views directory
 
  // ENDPOINTS
-app.get('/', (req, res)=>{
+app.get('/index', (req, res)=>{
     const con = "";
     const params = {}
     res.status(200).render('home.pug',params);
