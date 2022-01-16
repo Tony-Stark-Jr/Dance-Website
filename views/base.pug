@@ -1,0 +1,22 @@
+html
+  head
+    title Santosh Dance Academy
+    block scripts
+    block style
+  body
+    nav#navbar 
+        ul 
+              div#logo 
+                 img(src='/img/logo.png')
+                 | STA
+
+              li #[a(href='/') Home]
+              li #[a(href='/') About]
+              li #[a(href='/') Servies ]
+              li #[a(href='/') Class Info]
+              li #[a(href='/contact') Contact Us]
+
+    block content
+    block foot
+         #footer
+          | Copyright 2019 SantoshDance Academy | All Rights Reserved
